@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            minHeight="850.0" minWidth="850.0"
+            fx:controller="presenter.SimulationPresenter">
+    <center>
+        <Label fx:id="infoLabel" text="Intersection!" textAlignment="CENTER"/>
+        <GridPane fx:id="mapGrid" gridLinesVisible="false" alignment="CENTER"/>
+    </center>
+
+
+</BorderPane>
