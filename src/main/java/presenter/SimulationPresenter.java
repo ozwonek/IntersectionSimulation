@@ -145,10 +145,10 @@ public class SimulationPresenter {
                     imageView3.setFitHeight(size);
                     rotateImage(direction, imageView3);
                     switch (direction) {
-                        case SOUTH -> mapGrid.add(imageView3, 4 * laneNumber, 3 * laneNumber + i);
-                        case NORTH -> mapGrid.add(imageView3, 4 * laneNumber - 1, 5 * laneNumber - i - 1);
-                        case WEST -> mapGrid.add(imageView3, 5 * laneNumber - i - 1, 5 * laneNumber - 1);
-                        case EAST -> mapGrid.add(imageView3, 3 * laneNumber + i, 4 * laneNumber - 1);
+                        case SOUTH -> mapGrid.add(imageView3, 4 * laneNumber, 4 * laneNumber + i);
+                        case NORTH -> mapGrid.add(imageView3, 4 * laneNumber - 1, 4 * laneNumber - i - 1);
+                        case WEST -> mapGrid.add(imageView3, 4 * laneNumber - i - 1, 5 * laneNumber - 1);
+                        case EAST -> mapGrid.add(imageView3, 4 * laneNumber + i, 4 * laneNumber - 1);
                     }
                 }
             }

@@ -4,7 +4,7 @@ plugins {
     id 'application'
 }
 application {
-    getMainClass().set('Main')
+    getMainClass().set('main.Main')
 }
 
 group = 'org.example'

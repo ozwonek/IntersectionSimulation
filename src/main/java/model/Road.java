@@ -38,8 +38,11 @@ public class Road {
 
 
     public boolean noVehicleGoingStraight() {
-        return getLanes().stream().allMatch((lane -> lane.isEmpty() && (lane.isEmpty() || lane.getFirstVehicle().getTurn() != STRAIGHT)));
+        return getLanes().stream().allMatch((lane -> lane.isEmpty() || lane.getFirstVehicle().getTurn() != STRAIGHT));
+    }
 
+    public boolean noVehicleGoing() {
+        return getLanes().stream().allMatch((Lane::isEmpty));
     }
 
     public void processVehiclesWithoutCollisions(List<String> leavingIntersection) {

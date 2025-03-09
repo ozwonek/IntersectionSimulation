@@ -62,7 +62,22 @@ public class Intersection {
         step += 1;
         if (step >= (running ? greenRedStateDuration : orangeStateDuration)) {
             step = 0;
-            changeToNextLightsPhase();
+            if(running){
+                if(northernRoad.color() == RED){
+                    if(!northernRoad.noVehicleGoing() || !southernRoad.noVehicleGoing()){
+                        changeToNextLightsPhase();
+                    }
+                }
+                else{
+                    if(!easternRoad.noVehicleGoing() || !westernRoad.noVehicleGoing()){
+                        changeToNextLightsPhase();
+                    }
+                }
+            }
+            else{
+                changeToNextLightsPhase();
+            }
+
             running = !running;
         }
         return leftIntersection;
