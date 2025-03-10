@@ -12,7 +12,7 @@ public class Road {
     private final int numberOfLanes;
     private Light light;
     private boolean isRightArrowOn = false;
-    private List<Lane> lanes = new LinkedList<>();
+    private final List<Lane> lanes = new LinkedList<>();
 
     public Road(int numberOfLanes, Light initialLightState) {
         this.light = initialLightState;
