@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presenter.SimulationPresenter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -17,15 +18,28 @@ public class SimulationApp extends Application {
 
     public void init() {
         List<String> params = getParameters().getRaw();
-        System.out.println(params);
-        if (params.size() != 2) {
+        if (params.size() < 2) {
             System.out.println("Wrong Arguments");
             System.exit(1);
         }
+        int numberOfLanes = 2;
+        if (params.size() == 3){
+            try {
+                int number = Integer.parseInt(params.get(2));
+                if (number < 2 || number > 4) {
+                    throw new IllegalArgumentException("The number needs to be 2,3 or 4!");
+                }
+                else{
+                    numberOfLanes = number;
+                }
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("It is not a number!", e);
+            }
+        }
         String inputFilePath = params.get(0);
         String outputFilePath = params.get(1);
+
         InputData inputData = LoadJson.parseFile(inputFilePath);
-        int numberOfLanes = 2;
         this.simulation = new Simulation(inputData, outputFilePath, numberOfLanes);
     }
 

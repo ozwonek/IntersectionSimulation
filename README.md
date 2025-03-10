@@ -2,6 +2,23 @@
 This project creates a simple intersection simulation in Java. It reads input from a **JSON file**, which contains commands to **add vehicles** or **make a simulation step**. After each **step**, vehicles that have left the intersection are **written to an output JSON file**.
 
 
+## Usage
+### To launch the simulation with 2 lanes and specific input and output files:
+
+``
+    simulation.\gradlew run --args ="input.json output.json"
+``
+
+### To launch the simulation with a specific number of lanes, along with specific input and output files:
+
+``
+    simulation.\gradlew run --args ="input.json output.json numberOfLanes"
+``
+
+> **Note**: It is recommended to use a number of lanes from the set `{2, 3, 4}`.
+
+
+
 ## Specifications
 - **Traffic Lights** – There are four possible light states: **RED, GREEN, ORANGE, and REDTOGREEN**, which change in a cycle. Additionally, there is a **right arrow signal** for the rightmost lane.
 - **Roads** – There are four roads: **NORTHERN, SOUTHERN, WESTERN, and EASTERN**. All lanes on a given road share the same traffic light color at any moment.

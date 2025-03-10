@@ -18,9 +18,9 @@ public class WriteJson {
         StepStatuses steps = new StepStatuses(stepStatuses);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(steps);
+
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(json);
-            System.out.println("JSON zapisany do pliku output.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
