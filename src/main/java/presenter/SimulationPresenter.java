@@ -12,6 +12,8 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.*;
+import util.Directions;
+import util.Light;
 
 import static java.lang.Math.min;
 

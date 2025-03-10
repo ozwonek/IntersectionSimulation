@@ -1,4 +1,4 @@
-package model;
+package util;
 
 
 public enum Directions {
@@ -7,7 +7,7 @@ public enum Directions {
     EAST,
     WEST;
 
-    public Directions leftCollision() {
+    public Directions opposite() {
         return switch (this) {
             case NORTH -> SOUTH;
             case SOUTH -> NORTH;

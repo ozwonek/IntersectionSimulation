@@ -1,10 +1,12 @@
 package model;
 
+import util.Light;
+
 import java.util.LinkedList;
 import java.util.List;
 
-import static model.Turns.LEFT;
-import static model.Turns.STRAIGHT;
+import static util.Turns.LEFT;
+import static util.Turns.STRAIGHT;
 
 public class Road {
     private final int numberOfLanes;

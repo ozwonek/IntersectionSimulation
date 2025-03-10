@@ -1,10 +1,13 @@
 package model;
 
-import java.util.ArrayList;
+import util.Directions;
+import util.Light;
+
+import java.util.LinkedList;
 import java.util.List;
 
-import static model.Light.GREEN;
-import static model.Light.RED;
+import static util.Light.GREEN;
+import static util.Light.RED;
 
 public class Intersection {
     private final Road northernRoad;
@@ -26,11 +29,12 @@ public class Intersection {
         this.step = 0;
     }
 
+
     public List<String> extractVehiclesLeavingIntersection() {
-        List<String> leftIntersection = new ArrayList<>();
+        List<String> leftIntersection = new LinkedList<>();
         for (Directions direction : Directions.values()) {
             Road road = getRoad(direction);
-            Road oppositeRoad = getRoad(direction.leftCollision());
+            Road oppositeRoad = getRoad(direction.opposite());
             if (road.color() == GREEN) {
                 road.processVehiclesWithoutCollisions(leftIntersection);
                 if (oppositeRoad.noVehicleGoingStraight()) {
@@ -50,38 +54,43 @@ public class Intersection {
                 road.rideRight(leftRoad, leftIntersection);
             }
         }
-        if (running) {
+        processArrow();
+        processSignalisation();
+        return leftIntersection;
 
-            if (step == 2) {
+    }
+
+    private void processArrow() {
+        if (running) {
+            if (step == 1) {
                 toggleRightArrow();
             }
-            if (step == 3) {
+            if (step == greenRedStateDuration - 1) {
                 toggleRightArrow();
             }
         }
+    }
+
+    private void processSignalisation() {
         step += 1;
         if (step >= (running ? greenRedStateDuration : orangeStateDuration)) {
             step = 0;
-            if(running){
-                if(northernRoad.color() == RED){
-                    if(!northernRoad.noVehicleGoing() || !southernRoad.noVehicleGoing()){
-                        changeToNextLightsPhase();
+            if (running) {
+                for (Directions directions : Directions.values()) {
+                    if (getRoad(directions).color() == RED) {
+                        if (!getRoad(directions).noVehicleGoing() || !getRoad(directions.opposite()).noVehicleGoing()) {
+                            changeToNextLightsPhase();
+                            running = !running;
+                            break;
+                        }
                     }
                 }
-                else{
-                    if(!easternRoad.noVehicleGoing() || !westernRoad.noVehicleGoing()){
-                        changeToNextLightsPhase();
-                    }
-                }
-            }
-            else{
+            } else {
                 changeToNextLightsPhase();
+                running = !running;
             }
 
-            running = !running;
         }
-        return leftIntersection;
-
     }
 
 

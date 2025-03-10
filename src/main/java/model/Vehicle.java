@@ -1,5 +1,8 @@
 package model;
 
+import util.Directions;
+import util.Turns;
+
 public class Vehicle {
     private final String vehicleId;
     private final Directions startRoad;

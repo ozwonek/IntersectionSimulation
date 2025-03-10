@@ -1,6 +1,8 @@
 package model;
 
-import static model.Directions.*;
+import util.Directions;
+
+import static util.Directions.*;
 
 public class DirectionParser {
     public static Directions parse(String direction) {
